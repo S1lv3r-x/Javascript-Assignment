@@ -1,33 +1,37 @@
 const rectangle = document.getElementById("rectangle");
-const button = document.getElementById("moveBtn");
+    const button = document.getElementById("moveBtn");
 
-const corners = [
-  { bottom: "20px", left: "20px" },   // Bottom Left
-  { bottom: "20px", right: "20px" },  // Bottom Right
-  { top: "20px", right: "20px" },     // Top Right
-  { top: "20px", left: "20px" }       // Top Left
-];
+    const corners = [
+      { bottom: "20px", left: "20px" },   // Bottom Left
+      { bottom: "20px", right: "20px" },  // Bottom Right
+      { top: "20px", right: "20px" },     // Top Right
+      { top: "20px", left: "20px" }       // Top Left
+    ];
 
-const colors = ["red", "blue", "green", "orange"];
+    const colors = ["pink", "black", "white", "purple"];
 
-let currentCorner = 0;
 
-button.addEventListener("click", () => {
-  // Reset all corner styles
-  rectangle.style.top = "";
-  rectangle.style.bottom = "";
-  rectangle.style.left = "";
-  rectangle.style.right = "";
+    let currentCorner = 0;
 
-  // Apply the new corner position
-  const pos = corners[currentCorner];
-  for (let key in pos) {
-    rectangle.style[key] = pos[key];
-  }
+    // Set initial position and color
+    function setCorner(index) {
+      rectangle.style.top = "";
+      rectangle.style.bottom = "";
+      rectangle.style.left = "";
+      rectangle.style.right = "";
 
-  // Change the color
-  rectangle.style.backgroundColor = colors[currentCorner];
+      const pos = corners[index];
+      for (let key in pos) {
+        rectangle.style[key] = pos[key];
+      }
 
-  // Go to next corner (cycle)
-  currentCorner = (currentCorner + 1) % corners.length;
-});
+      rectangle.style.backgroundColor = colors[index];
+    }
+
+    // Set initial state
+    setCorner(currentCorner);
+
+    button.addEventListener("click", () => {
+      currentCorner = (currentCorner + 1) % corners.length;
+      setCorner(currentCorner);
+    });
