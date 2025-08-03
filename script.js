@@ -10,7 +10,6 @@ const rectangle = document.getElementById("rectangle");
 
     const colors = ["red", "orange", "yellow", "pink"];
 
-
     let currentCorner = 0;
     function setCorner(index) {
       rectangle.style.top = "";
